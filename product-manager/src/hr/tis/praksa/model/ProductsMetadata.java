@@ -1,3 +1,5 @@
+package hr.tis.praksa.model;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,5 +70,6 @@ public class ProductsMetadata {
         productMetadata.products.add(product1);
         productMetadata.products.add(product2);
 
+        System.out.println(productMetadata);
     }
 }

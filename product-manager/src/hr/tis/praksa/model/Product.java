@@ -1,5 +1,6 @@
+package hr.tis.praksa.model;
+
 import java.math.BigDecimal;
-import java.util.Currency;
 
 public class Product {
     private String name;
@@ -51,4 +52,13 @@ public class Product {
         this.ocjena = ocjena;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", cijena=" + cijena +
+                ", mjernaJedinica='" + mjernaJedinica + '\'' +
+                ", ocjena=" + ocjena +
+                '}';
+    }
 }
