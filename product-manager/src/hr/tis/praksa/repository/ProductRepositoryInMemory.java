@@ -43,7 +43,8 @@ public class ProductRepositoryInMemory implements ProductRepository {
 
     @Override
     public ProductsMetadata fetchProductsMetadata(LocalDate createdDate) {
-        for (ProductsMetadata data : productsMetadataList) {
+        for (int i = productsMetadataList.size()-1; i >= 0; i--) {
+            ProductsMetadata data = productsMetadataList.get(i);
             if (data.getDatumKreiranja().equals(createdDate)) {
                 return data;
             }
@@ -53,7 +54,8 @@ public class ProductRepositoryInMemory implements ProductRepository {
 
     @Override
     public ProductsMetadata fetchProductsMetadata(Long id) {
-        for (ProductsMetadata data : productsMetadataList) {
+        for (int i = productsMetadataList.size()-1; i >= 0; i--) {
+            ProductsMetadata data = productsMetadataList.get(i);
             if (data.getId().equals(id)) {
                 return data;
             }
