@@ -1,0 +1,13 @@
+Prvi dio
+1. One to many; 1 productsmetadata na više products
+2. Jer nisu precizni i imaju previše decimala.
+
+Drugi dio
+1. Sve se izbriše kada se ugasi računalo jer se ne sprema na disk.
+
+Treći dio
+1. Automatski close-a u memoriji resurse koje inače moramo eksplicitno closeati.
+2. U folderu
+3. ProductWriter.writeProducts i
+ProductWriter productWriter = new ProductWriter
+productWriter.writeProducts()
