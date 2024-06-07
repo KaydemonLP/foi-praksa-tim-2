@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ProductRepositoryInMemory implements ProductRepository {
 
-    static final List<ProductsMetadata> productsMetadataList = new ArrayList<>();
+    private static final List<ProductsMetadata> productsMetadataList = new ArrayList<>();
 
     @Override
     public Long insertProducts(ProductsMetadata ProductsMetadata) {
@@ -22,7 +22,7 @@ public class ProductRepositoryInMemory implements ProductRepository {
 
     @Override
     public BigDecimal fetchSumOfPrices(LocalDate createdDate) {
-        BigDecimal sumOfPrices = new BigDecimal(0);
+        BigDecimal sumOfPrices = BigDecimal.ZERO;
         ProductsMetadata metadata = fetchProductsMetadata(createdDate);
         for (Product product : metadata.getProducts()) {
             sumOfPrices = sumOfPrices.add(product.getCijena());
@@ -33,7 +33,7 @@ public class ProductRepositoryInMemory implements ProductRepository {
 
     @Override
     public BigDecimal fetchSumOfPrices(Long id) {
-        BigDecimal sumOfPrices = new BigDecimal(0);
+        BigDecimal sumOfPrices = BigDecimal.ZERO;
         ProductsMetadata metadata = fetchProductsMetadata(id);
         for (Product product : metadata.getProducts()) {
             sumOfPrices = sumOfPrices.add(product.getCijena());
@@ -44,7 +44,7 @@ public class ProductRepositoryInMemory implements ProductRepository {
     @Override
     public ProductsMetadata fetchProductsMetadata(LocalDate createdDate) {
         for (ProductsMetadata data : productsMetadataList) {
-            if (data.getDatumKreiranja()==createdDate) {
+            if (data.getDatumKreiranja().equals(createdDate)) {
                 return data;
             }
         }
@@ -68,7 +68,12 @@ public class ProductRepositoryInMemory implements ProductRepository {
 
     @Override
     public BigDecimal calculateSumOfPrices(List<Product> products) {
-        return null;
+        BigDecimal sumOfPrices = new BigDecimal(0);
+        for (Product product : products) {
+           sumOfPrices = sumOfPrices.add(product.getCijena());
+
+        }
+        return sumOfPrices;
     }
 
     public static void main(String[] args) {
@@ -78,13 +83,12 @@ public class ProductRepositoryInMemory implements ProductRepository {
 
         productMetadata.getProducts().add(product1);
         productMetadata.getProducts().add(product2);
-        LocalDate date = LocalDate.now();
-        productMetadata.setDatumKreiranja(date);
+        productMetadata.setDatumKreiranja(LocalDate.now());
 
         System.out.println("\n");
         ProductRepositoryInMemory repository = new ProductRepositoryInMemory();
         repository.insertProducts(productMetadata);
-        BigDecimal sumOfPrices = repository.fetchSumOfPrices(date);
+        BigDecimal sumOfPrices = repository.fetchSumOfPrices(LocalDate.now());
         System.out.println(sumOfPrices);
     }
 }
