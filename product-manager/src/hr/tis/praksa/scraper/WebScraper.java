@@ -52,7 +52,7 @@ public class WebScraper {
         Product ret = new Product();
         try {
             Document doc = Jsoup.connect(link).userAgent(EMULATED_USER_AGENT).get();
-
+            System.out.println(link);
             ret.setName(doc.title());
             Element priceContainer = doc.select("price").first();
             if( priceContainer != null )
@@ -93,7 +93,7 @@ public class WebScraper {
         {
             return eurElem.html();
         }
-
+        System.out.println("error");
         return null;
     }
 
